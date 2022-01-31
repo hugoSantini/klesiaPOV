@@ -2,7 +2,11 @@ Feature: La liste des items présent dans "Type de Rente" pour un client Carcept
 
   Scenario: Les différentes items de la liste de "Type de rente" Carcept-Prev :
 
-    Given Je suis sur la page bénéficiaires avec des identifiant Carcept-Prev,
-    When Je clique pour dérouler la liste des type de rente,
-    Then Les élément suivant s'affiche : "Invalidité", "Inaptitude à conduite", "Congés de fin d'activité (CFA)", "Rente éducation", "Rente Conjoint".
-
+    Given Mon navigateur et ouvert avec cookies
+    And Je me connecte a un compte avec les identifiants : "duboisjerome76@yopmail.com" et "Azerty123456?" Carcept
+    When J'arrive sur la page première page du formulaire
+    When Je clique sur Type de Rente
+    Then Je peux choisir : "Invalidité"
+    And Je peux choisir : "Rente éducation"
+    And Je peux choisir : "Rente conjoint"
+    And Je peux choisir : "Inaptitude à conduite"

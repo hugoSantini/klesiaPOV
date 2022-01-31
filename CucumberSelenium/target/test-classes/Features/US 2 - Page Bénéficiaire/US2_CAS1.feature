@@ -2,6 +2,8 @@ Feature: Deux blocs doivent être présent sur la page : "Information du bénéf
 
   Scenario: Présence des blocs
 
-    Given Je viens de me connecté,
-    When Je suis sur la page "Bénéficiaire",
-    Then Deux blocs sont présent : "Information du bénéficiaire", "Information sur votre rente".
+    Given Mon navigateur et ouvert avec cookies
+    And Je me connecte a un compte avec les identifiants : "merot.cynthia@yopmail.com" et "Azerty123456?"
+    When J'arrive sur la page première page du formulaire
+    Then Deux blocs sont présent : Information du bénéficiaire, Information sur votre rente
+

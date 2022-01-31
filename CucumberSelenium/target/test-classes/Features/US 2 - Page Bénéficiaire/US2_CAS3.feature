@@ -2,6 +2,7 @@ Feature: Le champ suivant doit être présent (avec son type) dans le bloc "Info
 
   Scenario: Bonne présence des champs du bloc "Informations sur votre rente" :
 
-    Given Je viens de me connecté,
-    When Je suis sur la page "Bénéficiaire",
-    Then les champs suivants sont présent dans le bloc "Information du bénéficiaire" : "Type de rente" -> Liste déroulante
+    Given Mon navigateur et ouvert avec cookies
+    And Je me connecte a un compte avec les identifiants : "merot.cynthia@yopmail.com" et "Azerty123456?"
+    When J'arrive sur la page première page du formulaire
+    Then Le champ "Type de rente" est présent et est de type "Liste déroulante"

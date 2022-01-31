@@ -1,30 +1,52 @@
 package StepsDefinitions;
 
-public class US1_CAS1 {
-    @Given("je possède un compte client en ligne Klesia,")
-    public void je_possède_un_compte_client_en_ligne_klesia() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+
+public class US1_CAS1 extends DriverSuperClass {
+
+    @Given("Mon navigateur et ouvert sans cookies")
+    public void mon_navigateur_et_ouvert_sans_cookies() {
+        System.out.println("Etape - Mon navigateur est ouvert");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");
+        setupChromeDriver(false);
     }
-    @When("Je rentre mon <identifiant> dans la zone {string},")
-    public void je_rentre_mon_identifiant_dans_la_zone(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @Given("Je suis sur la page de connexion du formulaire d'imposition")
+    public void je_suis_sur_la_page_de_connexion_du_formulaire_d_imposition() {
+        System.out.println("Etape - Je suis sur la page de connexion");
+        getDriver().navigate().to("https://re7-contact.klesia.fr/form");
     }
-    @When("Je rentre mon <MDP> dans la zone {string},")
-    public void je_rentre_mon_mdp_dans_la_zone(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @When("Je rentre mon identifiant : {string}")
+    public void je_rentre_mon_identifiant(String ID) {
+        System.out.println("Etape - Rentrer l'ID");
+        System.out.println("Mon identifiant est : " + ID);
+        getDriver().findElement(By.id("username")).sendKeys(ID);
+
+
     }
-    @Then("Ma page d'accueil client s'ouvre correctement.")
-    public void ma_page_d_accueil_client_s_ouvre_correctement(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
+    @When("Je rentre mon mdp : {string}")
+    public void je_rentre_mon_mdp(String MDP) {
+        System.out.println("Etape - Rentrer le MDP");
+        System.out.println("Mon Mot de Passe est : " + MDP);
+        getDriver().findElement(By.id("password")).sendKeys(MDP);
+
+    }
+
+    @When("J'appuye sur 'Se connecter'")
+    public void j_appuye_sur_se_connecter() {
+        System.out.println("Etape - Cliquer sur \"Se connecter\"");
+        getDriver().findElement(By.name("login")).click();
+    }
+
+    @Then("J'arrive sur la page première page du formulaire")
+    public void j_arrive_sur_la_page_première_page_du_formulaire() {
+        System.out.println("J'arrive sur la premier page du formulaire");
+        String currentURL = getDriver().getCurrentUrl();
+        Assert.assertEquals("https://re7-contact.klesia.fr/form", currentURL);
     }
 }
